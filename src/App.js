@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import { Switch, Route } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import './App.css';
 
-function App() {
-  return (
+import Github from './Components/github';
+import Notion from './Components/notion';
+import Main from './Components/main';
+
+class App extends Component {
+  render(){
+    return( 
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <ul className= "link-list">
+          <li>
+            <Link className="link" to="/">
+              메인 페이지 이동 
+            </Link>
+          </li>
+          <li>
+            <Link className="link" to="/notion">
+              노션 
+            </Link>
+          </li>
+          <li>
+            <Link className="link" to="/github">
+              github 주소
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <Switch>
+        <Route path="/" exact component={Main}/>
+        <Route path="/notion"  component={Notion} />
+        <Route path="/github"  component={Github} />
+      </Switch>
     </div>
-  );
+    
+    );
+  }
 }
+
 
 export default App;
